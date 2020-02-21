@@ -107,7 +107,7 @@ class Slice:
             return tuple(self.totuple(i) for i in a)
         except TypeError:
             return a
-    def order(self,pnts,prec = 5):
+    def order(self,pnts,prec = 5): ## 2nd sorting technique
         if not pnts: return []
         pnts = np.round(pnts,prec)
         pnts = self.totuple(pnts)
@@ -151,7 +151,7 @@ class Slice:
             return wires[0]
         if prec == 0: return wires[0]
         else: return self.order(wires,prec-1)
-    def cross_section(self,z):
+    def cross_section(self,z): ## take the cross_section at given elevation
         z1 = np.array(self.zvalues).reshape((int(len(self.zvalues)/3),3))
         idx = np.where((z1>z-5)&(z1<z+5))[0]
         fnum = set()
@@ -163,7 +163,7 @@ class Slice:
                 if cr: L.append(cr)
         L1 = np.round(L,3)
         lines = list(so.polygonize(L1.tolist()))
-        if lines:
+        if lines:   ## It employs two methods for sorting the line segments
             return list(lines[0].exterior.coords)
         else:
-            return list(self.order(L))
+            return list(self.order(L))  ## if the 1st method fails, this one is applied
