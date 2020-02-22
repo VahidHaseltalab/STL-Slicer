@@ -6,6 +6,7 @@ from stl import mesh
 import numpy as np
 from scipy import spatial
 import shapely.geometry as sg
+import shapely.ops as so
 
 
 ### Slicing an STL file format. It requires STL address or vertices of a stl file,
