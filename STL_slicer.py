@@ -4,7 +4,6 @@
 """
 from stl import mesh
 import numpy as np
-from scipy import spatial
 import shapely.geometry as sg
 import shapely.ops as so
 
